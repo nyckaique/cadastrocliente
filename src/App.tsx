@@ -158,7 +158,7 @@ function App() {
         </div>
       </form>
 
-      <div className="max-w-[90%] w-[90%] mx-auto overflow-x-auto rounded">
+      <div className="max-w-[90%] w-[90%] mx-auto overflow-x-auto rounded mb-6">
         <table className=" bg-white shadow-md rounded mx-auto ">
           <thead>
             <tr className="border-b-2 border-lime-400 ">
@@ -192,17 +192,19 @@ function App() {
       </div>
 
       <div
-        className="w-full text-center py-2 font-bold 
- absolute bottom-0"
+        className="w-full bg-black bg-opacity-10 text-center py-2 font-bold fixed
+  bottom-0"
       >
-        Desenvolvido por{" "}
-        <a
-          href="https://linkedin.com/in/nycollaskaique"
-          target="_blank"
-          className="underline"
-        >
-          Nycollas Kaique
-        </a>
+        <p>
+          Desenvolvido por{" "}
+          <a
+            href="https://linkedin.com/in/nycollaskaique"
+            target="_blank"
+            className="underline"
+          >
+            Nycollas Kaique
+          </a>
+        </p>
       </div>
     </div>
   );
