@@ -1,6 +1,5 @@
 import { useState, useRef, useEffect } from "react";
 import buscacep from "./services/buscacep";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function App() {
   interface Cliente {
@@ -82,7 +81,7 @@ function App() {
     setAtualizando(false);
   }
 
-  function editar(index) {
+  function editar(index: number) {
     setToggle(true);
     const lista = [...clientes];
     nome.current.value = lista[index].nome;
