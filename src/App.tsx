@@ -74,9 +74,9 @@ function App() {
   }
 
   function limpar() {
-    nome.current.value = "";
-    email.current.value = "";
-    cep.current.value = "";
+    nome.current!.value = "";
+    email.current!.value = "";
+    cep.current!.value = "";
     setIndex(0);
     setAtualizando(false);
   }
@@ -84,10 +84,10 @@ function App() {
   function editar(index: number) {
     setToggle(true);
     const lista = [...clientes];
-    nome.current.value = lista[index].nome;
-    email.current.value = lista[index].email;
-    cep.current.value = lista[index].cep;
-    nome.current.focus();
+    nome.current!.value = lista[index].nome;
+    email.current!.value = lista[index].email;
+    cep.current!.value = lista[index].cep;
+    nome.current!.focus();
     setIndex(index);
     setAtualizando(true);
   }
