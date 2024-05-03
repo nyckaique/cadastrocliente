@@ -123,7 +123,6 @@ function App() {
 
       <form
         onSubmit={(e) => handleSubmit(e)}
-        // w-full flex justify-center gap-2 items-center
         className={toggle ? "show" : "hide"}
       >
         <div className="mb-4">
@@ -159,6 +158,7 @@ function App() {
           </button>
         </div>
       </form>
+
       <div className="max-w-[90%] w-[90%] mx-auto overflow-x-auto rounded">
         <table className=" bg-white shadow-md rounded mx-auto ">
           <thead>
@@ -190,6 +190,20 @@ function App() {
             ))}
           </tbody>
         </table>
+      </div>
+
+      <div
+        className="w-full text-center py-2 font-bold 
+ absolute bottom-0"
+      >
+        Desenvolvido por{" "}
+        <a
+          href="https://linkedin.com/in/nycollaskaique"
+          target="_blank"
+          className="underline"
+        >
+          Nycollas Kaique
+        </a>
       </div>
     </div>
   );
