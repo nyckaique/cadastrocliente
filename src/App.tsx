@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import buscacep from "./services/buscacep";
+import ExportButton from "./components/export.jsx";
 
 function App() {
   interface Cliente {
@@ -118,6 +119,7 @@ function App() {
         >
           <i className="fa-solid fa-plus "></i>
         </button>
+        <ExportButton data={clientes} />
       </div>
 
       <form
