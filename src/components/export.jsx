@@ -1,4 +1,5 @@
 import React from "react";
+import { toast } from "react-toastify";
 
 export default function ExportButton({ data }) {
   function handleExport() {
@@ -28,6 +29,7 @@ export default function ExportButton({ data }) {
 
     //Limpar a URL do Blob após o download
     URL.revokeObjectURL(url);
+    toast.success("Seu arquivo foi exportado com sucesso");
   }
 
   return (

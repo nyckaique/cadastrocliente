@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import buscacep from "./services/buscacep";
 import ExportButton from "./components/export.jsx";
 import ImportButton from "./components/import.jsx";
+import { toast } from "react-toastify";
 
 function App() {
   interface Cliente {
@@ -62,14 +63,16 @@ function App() {
           setClientes(lista);
           setAtualizando(false);
           limpar();
+          toast.success("Atualizado com sucesso");
         } else {
           const lista: Cliente[] = [...clientes];
           lista.push(aux);
           setClientes(lista);
           limpar();
+          toast.success("Cadastrado com sucesso");
         }
       } catch (e) {
-        alert("Deu um erro na busca!");
+        toast.error("Deu um erro na busca do CEP");
         console.log(e);
       }
     }
@@ -100,6 +103,7 @@ function App() {
       lista.splice(index, 1);
       setClientes(lista);
       limpar();
+      toast.success("Excluido com sucesso");
     }
   }
   function handleToggle() {
@@ -107,6 +111,7 @@ function App() {
   }
   function handleImport(json: Cliente[]) {
     setClientes(json);
+    toast.success("Seus dados foram carregados");
   }
   useEffect(() => {
     localStorage.setItem("clientes", JSON.stringify(clientes));

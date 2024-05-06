@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 export default function ImportButton({ handleImport }) {
   const handleFileChange = (e) => {
     //Impede de recarregar a página
@@ -6,7 +7,7 @@ export default function ImportButton({ handleImport }) {
 
     //Se não tiver um arquivo, retorna
     if (!file) {
-      alert("Selecione um arquivo JSON.");
+      toast.info("Selecione um arquivo JSON");
       return;
     }
 
@@ -22,7 +23,7 @@ export default function ImportButton({ handleImport }) {
         //Salva o arquivo importado no local storage
         saveToLocalStorage(json);
       } catch (error) {
-        alert("Erro ao ler o arquivo JSON.");
+        toast.error("Erro ao ler o arquivo JSON");
       }
     };
     reader.readAsText(file);
@@ -31,7 +32,7 @@ export default function ImportButton({ handleImport }) {
   const saveToLocalStorage = (data) => {
     //Converte de Js Object para Json string e salva no local storage com a tag clientes
     localStorage.setItem("clientes", JSON.stringify(data));
-    alert("Dados salvos no Local Storage.");
+    toast.success("Dados salvos no Local Storage do seu navegador");
   };
 
   const handleButtonClick = () => {
