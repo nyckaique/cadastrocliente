@@ -1,5 +1,8 @@
 import { useState, useRef, useEffect } from "react";
 import buscacep from "./services/buscacep";
+import ExportButton from "./components/export.jsx";
+import ImportButton from "./components/import.jsx";
+import { toast } from "react-toastify";
 
 function App() {
   interface Cliente {
@@ -60,14 +63,16 @@ function App() {
           setClientes(lista);
           setAtualizando(false);
           limpar();
+          toast.success("Atualizado com sucesso");
         } else {
           const lista: Cliente[] = [...clientes];
           lista.push(aux);
           setClientes(lista);
           limpar();
+          toast.success("Cadastrado com sucesso");
         }
       } catch (e) {
-        alert("Deu um erro na busca!");
+        toast.error("Deu um erro na busca do CEP");
         console.log(e);
       }
     }
@@ -98,28 +103,35 @@ function App() {
       lista.splice(index, 1);
       setClientes(lista);
       limpar();
+      toast.success("Excluido com sucesso");
     }
   }
   function handleToggle() {
     setToggle(!toggle);
+  }
+  function handleImport(json: Cliente[]) {
+    setClientes(json);
+    toast.success("Seus dados foram carregados");
   }
   useEffect(() => {
     localStorage.setItem("clientes", JSON.stringify(clientes));
   }, [clientes]);
   return (
     <div className="w-full min-h-screen bg-stone-400 background py-4 text-gray-700">
-      <div className="flex justify-center items-center gap-4 font-bold text-lg mb-4 flex-col gap-4 sm:flex-row">
-        <h1 className="text-center w-fit bg-white shadow-md rounded px-8 py-2">
-          Cadastro de Clientes
-        </h1>
+      <h1 className="text-center w-fit mx-auto my-4 font-bold text-lg bg-white shadow-md rounded px-8 py-2">
+        Cadastro de Clientes
+      </h1>
+
+      <div className="flex justify-center items-center gap-4 mb-4 flex-col gap-4 sm:flex-row">
         <button
           className=" w-10 h-10 shrink-0 btn-color rounded-[50%]"
           onClick={() => handleToggle()}
         >
           <i className="fa-solid fa-plus "></i>
         </button>
+        <ExportButton data={clientes} />
+        <ImportButton handleImport={handleImport} />
       </div>
-
       <form
         onSubmit={(e) => handleSubmit(e)}
         className={toggle ? "show" : "hide"}
