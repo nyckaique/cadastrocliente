@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import buscacep from "./services/buscacep";
 import ExportButton from "./components/export.jsx";
+import ImportButton from "./components/import.jsx";
 
 function App() {
   interface Cliente {
@@ -104,15 +105,19 @@ function App() {
   function handleToggle() {
     setToggle(!toggle);
   }
+  function handleImport(json: Cliente[]) {
+    setClientes(json);
+  }
   useEffect(() => {
     localStorage.setItem("clientes", JSON.stringify(clientes));
   }, [clientes]);
   return (
     <div className="w-full min-h-screen bg-stone-400 background py-4 text-gray-700">
-      <div className="flex justify-center items-center gap-4 font-bold text-lg mb-4 flex-col gap-4 sm:flex-row">
-        <h1 className="text-center w-fit bg-white shadow-md rounded px-8 py-2">
-          Cadastro de Clientes
-        </h1>
+      <h1 className="text-center w-fit mx-auto my-4 font-bold text-lg bg-white shadow-md rounded px-8 py-2">
+        Cadastro de Clientes
+      </h1>
+
+      <div className="flex justify-center items-center gap-4 mb-4 flex-col gap-4 sm:flex-row">
         <button
           className=" w-10 h-10 shrink-0 btn-color rounded-[50%]"
           onClick={() => handleToggle()}
@@ -120,8 +125,8 @@ function App() {
           <i className="fa-solid fa-plus "></i>
         </button>
         <ExportButton data={clientes} />
+        <ImportButton handleImport={handleImport} />
       </div>
-
       <form
         onSubmit={(e) => handleSubmit(e)}
         className={toggle ? "show" : "hide"}
